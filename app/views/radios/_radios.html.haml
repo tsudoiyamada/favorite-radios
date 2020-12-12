@@ -1,0 +1,19 @@
+%ul.list-unstyled
+  - radios.each do |radio|
+    %ul.list-unstyled
+      .media.mb-3.radios_container
+        .media-body
+          %img.rounded.img-fluid{:alt => "", :src => "#{gravatar_url(radio.user, { size: 300 })}"}/
+          
+          %li.radio_title
+            %span.btn.btn-warning.btn-sm Title
+            %p= radio.title
+          %li
+            %p= link_to 'More Detail', radio_path(radio)
+          %li
+            %div
+              = render "favorites/favorite_button", radio: radio
+              - if current_user == radio.user
+                = link_to "Edit", edit_radio_path(radio), class: 'btn btn-primary btn-sm'
+                = button_to "Delete", radio, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm'
+    = paginate radios

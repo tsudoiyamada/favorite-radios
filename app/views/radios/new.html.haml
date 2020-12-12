@@ -1,0 +1,26 @@
+- now = Time.zone.now
+
+.text-center
+  %h1 Let's Share Radios!!
+.row
+  .col-sm-6.offset-sm-3
+    = form_with(model: @radio, local: true) do |f|
+      = render 'layouts/error_messages', model: f.object
+      .form-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
+      .form-group
+        = f.label :start_at
+        %div 
+          = f.datetime_select :start_at, start_year: now.year, end_year: now.year + 1
+      .form-group
+        = f.label :end_at
+        %div 
+          = f.datetime_select :end_at, start_year: now.year, end_year: now.year + 1
+      .form-group
+        = f.label :introduction
+        = f.text_field :introduction, class: 'form-control'
+      .form-group
+        = f.label :image
+        = f.file_field :image, class: "form-control-file"
+      = f.submit 'Post', class: 'btn btn-success btn-block'

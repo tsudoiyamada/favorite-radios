@@ -1,0 +1,35 @@
+- now = Time.zone.now
+- if logged_in?
+  .row
+    %aside.col-sm-5
+      %h3 Let's share your favorites!!
+      = form_with(model: @radio, local: true) do |f|
+        = render 'layouts/error_messages', model: f.object
+        .form-group
+          = f.label :title
+          = f.text_area :title, size: '10×20', class: 'form-control'
+        .form-group
+          = f.label :introduction
+          = f.text_area :introduction, size: '30×20', class: 'form-control'
+        .form-group
+        = f.label :start_at
+        %div 
+          = f.datetime_select :start_at, start_year: now.year, end_year: now.year + 1
+        .form-group
+        = f.label :end_at
+        %div 
+          = f.datetime_select :end_at, start_year: now.year, end_year: now.year + 1
+        .form-group
+        = f.label :image
+        = f.file_field :image, class: "form-control-file"
+        = f.submit 'Post', class: 'btn btn-success btn-block'
+    .col-sm-7
+      = render 'radios/radios', radios: @radios
+    = paginate @radios
+- else
+  .center.jumbotron
+    .text-center
+      %h1 Favorite Radios
+      %h3 ~ What's your favorite radios? Let's share them!!
+      = link_to 'Sign up', signup_path, class: 'btn btn-lg btn-success'
+      = link_to 'Login', login_path, class: 'btn btn-lg btn-success'

@@ -1,0 +1,14 @@
+.text-center
+  %h1 Log in
+.row
+  .col-sm-6.offset-sm-3
+    = form_with(url: login_path, scope: :session, local: true) do |f|
+      .form-group
+        = f.label :email, 'Email'
+        = f.email_field :email, class: 'form-control'
+      .form-group
+        = f.label :password, 'Password'
+        = f.password_field :password, class: 'form-control'
+      = f.submit 'Log in', class: 'btn btn-success btn-block'
+    %p
+      New user? #{link_to 'Sign up!', signup_path}

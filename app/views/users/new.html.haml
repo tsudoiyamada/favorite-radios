@@ -1,0 +1,27 @@
+.text-center
+  %h1 Sign up
+.row
+  .col-sm-6.offset-sm-3
+    = form_with(model: @user, local: true) do |f|
+      = render 'layouts/error_messages', model: f.object
+      .form-group
+        = f.label :name, 'Name'
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :email, 'Email'
+        = f.email_field :email, class: 'form-control'
+      .form-group
+        = f.label :password, 'Password'
+        = f.password_field :password, class: 'form-control'
+      .form-group
+        = f.label :password_confirmation, 'Confirmation'
+        = f.password_field :password_confirmation, class: 'form-control'
+      .field
+        = f.label :introduction, 'Your Introduction (within: 500 characters):'
+        = f.text_area :introduction, size: '50×20', class: 'form-control'
+      .form-group
+        = f.label :image
+        = f.file_field :image, class: "form-control-file"
+      = f.submit 'Sign up', class: 'btn btn-success btn-block'
+    %p
+      Already user? #{link_to 'Log in!', login_path}

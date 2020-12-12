@@ -1,0 +1,22 @@
+%body
+  %header.mb-4
+    %nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
+      %a.navbar-brand{:href => "/"} Favorite Radios
+      %button.navbar-toggler{"data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse.justify-content-end
+        %ul.navbar-nav
+          - if logged_in?
+            %li.nav-item= link_to 'Users', users_path, class: 'nav-link'
+            %li.nav-item.dropdown
+              %a.nav-link.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}= current_user.name
+              %ul.dropdown-menu.dropdown-menu-right
+                %li.dropdown-item= link_to 'My profile', user_path(current_user)
+                %li.dropdown-divider
+                %li.dropdown-item
+                  = link_to 'Likes', likes_user_path(current_user)
+                  %span{:class => "badge badge-secondary>#{@count_likes}", "dropdown-divider" => ""}
+                %li.dropdown-item= link_to 'Logout', logout_path, method: :delete
+          - else
+            %li.nav-item= link_to 'Signup', signup_path, class: 'nav-link'
+            %li.nav-item= link_to 'Login', login_path, class: 'nav-link'

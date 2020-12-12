@@ -1,0 +1,12 @@
+- if users.any?
+  - users.each do |user|
+    %ul.list-unstyled
+      .media.mb-3.users_container
+        .media-body
+          %img.mr-2.rounded{alt: "", src: "#{gravatar_url(user, { size: 300 })}"}/
+          %li.row
+            %p User Name:
+            = user.name
+          %li
+            %p= link_to 'View Detail', user_path(user)
+    = paginate users

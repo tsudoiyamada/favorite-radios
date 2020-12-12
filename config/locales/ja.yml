@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      radio: ラジオ
+    attributes:
+      radio:
+        title: タイトル
+        start_at: 開始時間(直近の放送日時を入力してください。)
+        end_at: 終了時間(直近の放送日時を入力してください。)
+        introduction: イントロダクション
+        image: イメージ

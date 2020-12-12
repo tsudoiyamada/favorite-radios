@@ -1,0 +1,21 @@
+.row
+  %aside.col-sm-5
+    .card.mb-2
+      .card-header
+        %h3.card-title= @radio.title
+      .card-body
+      - if @radio.image.attached?
+        = image_tag @radio.image, class: "card-img-top"
+      %li.user_name.list-unstyled
+        %span.btn.btn-warning.btn-sm User
+        = current_user.name
+      = render "favorites/favorite_button", radio: @radio
+  .col-sm-7
+    .card.mb-2
+      %h5.card-header 放送時間
+      .card-body
+        %p.card-text= "#{l(@radio.start_at, format: :long)} - #{l(@radio.end_at, format: :long)}"
+    .card.mb-2
+      %h5.card-header イントロダクション
+      .card-body
+        %p.card-text= @radio.introduction

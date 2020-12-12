@@ -1,0 +1,33 @@
+- now = Time.zone.now
+
+.text-left
+  %h2 Edit Radio
+.row
+  .col-am-8.offset-sm-2
+    = form_with(model: @radio, local: true) do |f|
+      .field
+        = f.label :title, 'Radio Title:'
+        = f.text_area :title, class: 'form-control'
+      .form-group
+        = f.label :start_at
+        %div 
+          = f.datetime_select :start_at, start_year: now.year, end_year: now.year + 1
+      .form-group
+        = f.label :end_at
+        %div 
+          = f.datetime_select :end_at, start_year: now.year, end_year: now.year + 1
+      .field
+        = f.label :introduction, 'Radio Introduction:'
+        = f.text_area :introduction, size: '50×20', class: 'form-control'
+      .form-group
+        = f.label :image
+        -  if @radio.image.attached?
+          = image_tag @radio.image,
+              class: "img-thumbnail d-block mb-3", width: 200, height: 200
+        = f.file_field :image, class: "form-control-file"
+      -  if @radio.image.attached?
+        .checkbox
+          %label
+            = f.check_box :remove_image
+            画像を削除する
+      = f.submit 'Post', class: 'btn btn-success btn-block'

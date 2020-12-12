@@ -48,3 +48,6 @@ gem 'kaminari'
 gem 'hamlit-rails', '~> 0.2.3'
 gem 'active_storage_validations', '~> 0.8.8'
 gem 'rails-i18n', '~> 6.0.0'
+group :production do
+  gem 'pg', '>= 0.18', '< 2.0'
+end

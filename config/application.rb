@@ -32,5 +32,6 @@ module Radios
     config.hosts << 'abc570c2f4554c269935522a6fcbedd5.vfs.cloud9.us-east-1.amazonaws.com'
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.hosts << "favorite-radios.herokuapp.com/"
   end
 end
